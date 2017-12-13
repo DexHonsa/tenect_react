@@ -1,0 +1,448 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700');
+@font-face {
+  font-family: 'Quicksand';
+  src: url('https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700');
+}
+
+html, body{
+	margin:0;
+	padding:0;
+	font-family: 'Quicksand'
+}
+a:hover{
+	text-decoration: none;
+}
+ul,li{
+	margin:0;
+	padding:0;
+	list-style: none;
+}
+.css-help-block{
+  color:#ff0000;
+  display: inline-block;
+  margin-top:10px;
+  position: absolute;
+  left:0;
+  top:90px;
+}
+.css-main-nav{
+	position: fixed;
+	top:0;
+	left: 0;
+	width:100%;
+	height: 90px;
+	background:#fff;
+	border-bottom:solid 1px #eaeaea;
+	display: block;
+	z-index: 1000;
+}
+.css-section-a{
+	padding:50px 0px;
+	overflow: auto;
+	background: #60cbf8; /* Old browsers */
+	background: -moz-linear-gradient(top, #60cbf8 0%, #37aafd 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #60cbf8 0%,#37aafd 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #60cbf8 0%,#37aafd 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#60cbf8', endColorstr='#37aafd',GradientType=0 ); /* IE6-9 */
+	width:100%;
+
+
+}
+.css-section-a1{
+	height:400px;
+	width:100%;
+	margin-top: 90px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.css-login-section{
+	height:calc(100vh - 240px);
+	width:100%;
+	margin-top: 90px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.css-main-logo-container{
+	width:100%;
+	padding:15px;
+	max-width: 300px;
+}
+.css-main-logo-container img{
+	width:100%;
+}
+.css-nav-list li{
+	list-style: none;
+	height:90px;
+	display: flex;
+	padding:0px 25px;
+	color:#808080;
+	align-items: center;
+	justify-content: center;
+	float:left;
+	cursor: pointer;
+	transition:all .3s ease;
+}
+.css-nav-list li:hover{
+	color:#000;
+}
+.css-nav-list{
+	float: left
+}
+.css-logo{
+	float: left;
+	background:#fd7a23;
+	background: #fd7a23; /* Old browsers */
+background: -moz-linear-gradient(top, #fd7a23 0%, #fb6c48 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #fd7a23 0%,#fb6c48 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #fd7a23 0%,#fb6c48 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fd7a23', endColorstr='#fb6c48',GradientType=0 ); /* IE6-9 */
+	display: flex;
+	align-items: center;
+	padding:0px 15px;
+	width:120px;
+	height:90px;
+}
+.css-logo img{
+	width:100%;
+}
+.css-login-list{
+	float: right;
+}
+.css-login-list li{
+	height:90px;
+	padding:0px 25px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	float: left;
+	color:#808080;
+}
+.css-login-list li:hover{
+	cursor: pointer;
+	color:#000;
+}
+.css-signup-btn{
+	color:#fff;
+	background:#66d0f7;
+	border-radius: 3px;
+	padding:7px 25px;
+}
+.css-signup-btn:hover{
+	cursor: pointer;
+	background:#3DC3F4;
+}
+
+.css-computer-container{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.css-computer-container img{
+	max-width: 1000px;
+	width:100%;
+}
+.css-section-header{
+
+	text-align: left;
+}
+.css-section-header h1{
+	padding-bottom:25px;
+	font-size: 18pt;
+
+	margin:0;
+	color:#fff;
+}
+.css-section-header p{
+	color:#fff;
+	font-size: 12pt;
+
+}
+.css-mobile-nav{
+	display: none;
+	height:50px;
+	border-bottom:solid 1px #eaeaea;
+	top:0;
+	position: fixed;
+	width:100%;
+	background:#fff;
+	z-index: 1000;
+}
+.css-mobile-nav-toggle{
+	margin-top:5px;
+	margin-right: 5px;
+	color:#aeaeae;
+	font-size: 15pt;
+	width:40px;
+	height:40px;
+	text-align: center;
+	line-height: 40px;
+	border-radius: 3px;
+	float: right;
+	border:solid 1px #eaeaea;
+	cursor: pointer;
+
+}
+.css-mobile-nav-toggle.css-active{
+	color:#000;
+	background:#eaeaea;
+}
+.css-mobile-nav-list{
+	margin-top:50px;
+	display: none;
+}
+.css-mobile-nav-list ul{
+	display: none;
+	box-shadow: 0px 11px 19px rgba(0,0,0,0.2)
+}
+.css-mobile-nav-list li{
+	padding:15px;
+	width:100%;
+	background:#fff;
+	color:#808080;
+	font-size: 12pt;
+	border-bottom:solid 1px #eaeaea;
+	cursor: pointer;
+}
+.css-mobile-nav-list li:hover{
+	background:#f3f3f3;
+	color:#000;
+}
+.css-section-b{
+
+
+	overflow: auto;
+	padding:70px 0px;
+	width:100%;
+
+}
+.css-section-c{
+	padding:100px 0px;
+	background:#f2f2f2;
+}
+.css-login-input{
+	margin-bottom:15px;
+}
+.css-login-input input{
+	width:100%;
+	padding:10px;
+	border:solid 1px #eaeaea;
+	border-radius: 3px;
+	transition: all .3s ease;
+}
+.css-login-input input:focus{
+	outline:none;
+	border:solid 1px #66d0f7;
+}
+.css-login-input textarea{
+	width:100%;
+	padding:4px;
+	border:solid 1px #eaeaea;
+	border-radius: 3px;
+
+}
+.css-paragraphs{
+
+	color:#000;
+	text-align: left;
+	font-size: 12pt;
+}
+.css-message-box h1{
+
+	text-align: center;
+	color:#66d0f7
+}
+.css-message-box p{
+	font-size: 13pt;
+	color:#808080;
+	text-align: center;
+	margin-bottom:25px;
+}
+.css-error{
+	border:solid 1px #ff0000 !important;
+}
+.css-submit-btn{
+	background:#66d0f7;
+	border-radius: 4px;
+	display: inline-block;
+	padding:8px 20px;
+	color:#fff;
+	float: right;
+}
+.css-submit-btn:hover{
+	background:#24BBF3;
+	cursor: pointer;
+}
+.css-footer{
+	height:150px;
+	background:#1a1a1a;
+	width:100;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color:#808080;
+	font-size: 10pt;
+}
+.css-sent{
+	background:#3FCC88 !important;
+	pointer-events: none;
+}
+.css-login-title{
+	font-size: 15pt;
+	color:#00bff3;
+	margin-bottom:10px;
+}
+.css-login-inputs{
+	width:100%;
+}
+.css-login-input-item{
+	padding:15px 0px;
+	position: relative;
+}
+.css-login-input-title{
+	font-size:12pt;
+	color:#808080;
+	transform: translateY(44px) translateX(15px);
+	transition:all .3s ease;
+	position: absolute;
+	top:0;
+}
+.css-login-input-input{
+	overflow: auto;
+}
+.css-login-input-input{
+	width:100%;
+	border:solid 1px #eaeaea;
+	border-radius: 3px;
+	font-size: 12pt;
+	margin-top:10px;
+	padding:10px;
+}
+.css-login-input-input:focus{
+	outline:none;
+	border:solid 1px #00bff3;
+}
+.css-login-input-title.css-active{
+	font-size:12pt;
+	color:#808080;
+	transform: translateY(0px);
+}
+.css-login-btn{
+	background:#00bff3;
+	padding:25px 25px;
+	color:#fff;
+	font-size: 12pt;
+	text-align: center;
+	border-radius: 3px;
+	margin-top:15px;
+	transition:all .3s ease;
+}
+.css-login-btn:hover{
+	cursor: pointer;
+	box-shadow: 0px 0px 0px 5px rgba(0,191,243,0.33)
+}
+.css-error-msg{
+	color:#A84749 !important;
+	font-size: 10pt;
+	display: none;
+}
+
+.popup-1{
+	width:400px;
+	overflow: auto;
+	background:#fff;
+	border-radius: 3px;
+	overflow: hidden;
+}
+.popup-content{
+	padding:15px;
+}
+.sign-up-input-item input{
+	background:#fff;
+	width:100%;
+	border-radius: 3px;
+	border:solid 1px #eaeaea;
+	font-size: 12pt;
+	color:#3080e8;
+	font-weight: 500;
+	padding:10px;
+}
+.sign-up-input-item input:focus{
+	outline: none;
+	border-color:#3080e8;
+}
+.sign-up-input-label{
+	font-size: 9pt;
+	color:#d0d0d0;
+	text-transform: uppercase;
+	margin-top: 15px;
+	margin-bottom: 3px;
+}
+.popup-top{
+	display: flex;
+	align-items: center;
+	height:50px;
+	background:#3080e8;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+	overflow: hidden;
+	padding:15px;
+	font-size: 12pt;
+	color:#fff;
+}
+.popup-top i{
+	margin-left: auto;
+
+}
+.sign-up-logo img{
+	max-width: 150px;
+}
+.sign-up-logo{
+	width:100%;
+	padding:15px;
+	text-align: center;
+}
+.popup-top i:hover{
+	color:#ECECEC;
+	cursor: pointer;
+}
+.sign-up-btn{
+	width:100%;
+	padding:15px;
+	color:#fff;
+	background:#3080e8;
+	text-align: center;
+	margin-top: 15px;
+	border-radius: 3px;
+	transition: all .3s ease;
+}
+.sign-up-btn:hover{
+	cursor: pointer;
+	box-shadow: 0px 0px 0px 5px rgba(48,128,232,0.59);
+}
+.sign-up-disclaimer{
+	font-size: 9pt;
+	color:#d0d0d0;
+	margin-top: 10px;
+	width:100%;
+	text-align: center;
+}
+@media(max-width:728px){
+	.css-section-header{
+		text-align: center;
+	}
+	.css-section-a{
+		overflow: auto;
+		height:auto;
+	}
+	.css-mobile-nav{
+		display: block;
+	}
+	.css-section-a1{
+		margin-top:0;
+	}
+	.css-main-nav{
+		display: none;
+	}
+}
