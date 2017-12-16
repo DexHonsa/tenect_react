@@ -1,69 +1,63 @@
-import React from 'react';
-
+import React, { Component } from 'react';
 import $ from 'jquery';
 import {Link} from 'react-router-dom';
-import TextFieldGroup from './text_field_group';
 import axios from 'axios';
 import validateInput from '../validations/signin_validation';
 import {createBrowserHistory } from 'history';
 import PropTypes from "prop-types";
-
 import {connect} from 'react-redux';
 import { userLogin } from '../../actions/auth_actions';
+import SignUpPopup from './signup-popup.js';
 
-import SignUpPopup from './sign_up_popup.js';
 
-import logo_grey from '../../img/logo_grey.png';
-import logo_color from '../../img/logo_color_with_line.png';
-import computer from '../../img/computer.png';
 import logo_white from '../../img/logo_white.png';
+import logo_color from '../../img/logo_1.png';
+import TextFieldGroup from './text-input-group';
 
-const browserHistory = createBrowserHistory();
-
-class Login extends React.Component {
+class Login extends Component {
   static contextTypes = {
     router: PropTypes.object
   }
   constructor(props) {
-  		super(props);
-  		this.state = {
-  			username : '',
-  			password : '',
-  			errors : {},
-  			isLoading : '',
+      super(props);
+      this.state = {
+        username : '',
+        password : '',
+        errors : {},
+        isLoading : '',
         signupPopup:false
-  		}
+      }
 
-  		this.onSubmit = this.onSubmit.bind(this);
-  		this.onChange = this.onChange.bind(this);
-  	}
+      this.onSubmit = this.onSubmit.bind(this);
+      this.onChange = this.onChange.bind(this);
+    }
   isValid(){
-		const { errors, isValid } = validateInput(this.state);
-		if(!isValid){
-			this.setState({
-				errors : errors
-			})
-		}
-		return isValid;
-	}
-	onChange(e){
-		this.setState({
-			[e.target.name] : e.target.value
-		})
-	}
-	onSubmit(e){
-		if(this.isValid()){
-			var data = this.state;
-			var that = this;
+    const { errors, isValid } = validateInput(this.state);
+    if(!isValid){
+      this.setState({
+        errors : errors
+      })
+    }
+    return isValid;
+  }
+  onChange(e){
+    this.setState({
+      [e.target.name] : e.target.value
+    })
+  }
+  onSubmit(e){
+    if(this.isValid()){
+      var data = this.state;
+      var that = this;
 
-			e.preventDefault();
-			 this.setState({errors: {}, isLoading: true});
-			this.props.userLogin(this.state).then(
-				(res) => this.context.router.history.push('/product/dashboard'),
-				(err) => this.setState({errors: err.response.data.errors, isLoading: false})
-				);
-		}
-	}
+      e.preventDefault();
+       this.setState({errors: {}, isLoading: true});
+      this.props.userLogin(this.state).then(
+        (res) => this.context.router.history.push('/dashboard'),
+        (err) => this.setState({errors: err.response.data.errors, isLoading: false})
+        );
+    }
+  }
   showSignupPopup(){
     this.setState({
       signupPopup: !this.state.signupPopup
@@ -77,92 +71,75 @@ class Login extends React.Component {
     }else{
       signupPopup = null;
     }
-
     return (
       <div>
-        <div>
-        {signupPopup}
-          <div className="css-main-nav">
-            <div className="container">
-              <div className="css-logo">
-                <img src={logo_white} alt/>
-              </div>
-              <ul className="css-nav-list">
-                <li className="css-services-btn">Services</li>
-                <li className="css-aboutus-btn">About Us</li>
-              </ul>
-              <ul className="css-login-list">
+      {signupPopup}
+      <div>
+  <div className="login-top-bar">
+    <div className="top-logo">
+      <img src={logo_white} alt />
+    </div>
+    <div className="sign-up-btn2" onClick={this.showSignupPopup.bind(this)}>Sign Up</div>
+  </div>
+  <div className="login-main">
+    <div className="login-box">
+    <form onSubmit={this.onSubmit.bind(this)} >
+      <div className="login-box-logo">
+        <img src={logo_color} alt />
+      </div>
+      <div className="login-box-input-item">
+        <label htmlFor>Username</label>
+        <TextFieldGroup
+          field="username"
+          label="username"
+          type="text"
+          value={username}
+          error={errors.username}
+          onChange={this.onChange}
+        />
+      </div>
+      <div className="login-box-input-item">
+        <label htmlFor>Password</label>
+        <TextFieldGroup
+        field="password"
+        label="password"
+        type="password"
+        value={password}
+        error={errors.password}
+        onChange={this.onChange}
+      />
+      </div>
+      {errors.form && <div className="alert-danger animated fadeIn">{errors.form}</div>}
+      <button className="login-box-btn" type="submit">Login</button>
+      <div className="disclaimer-text">Don't have an Account? <a onClick={this.showSignupPopup.bind(this)} href="#">Sign Up Here</a></div>
+      </form>
+    </div>
+  </div>
+  <footer style={{marginTop: 100}}>
+    <div className="container">
+      <div className="row">
+        <div className="col-lg-12 text-center">
+          <h4> For any other inquiries, please contact us at:
+          </h4>
+          <p>
+          </p>
+          <ul className="list-unstyled">
+            <li><i className="fa fa-envelope-o fa-fw" /> <a href="mailto:name@example.com">Inquire@Tenect.com</a>
+            </li>
+          </ul>
+          <br />
 
-                  <li>Login</li>
-                
-                <li>
-                  <div className="css-signup-btn" onClick={this.showSignupPopup.bind(this)}>Sign Up</div>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="css-mobile-nav">
-            <div className="css-mobile-nav-toggle"><i className="fa fa-bars"/></div>
-            <div className="css-mobile-nav-list">
-              <ul>
-                <li className="css-services-btn">Services</li>
-                <li className="css-aboutus-btn">About Us</li>
-              </ul>
-            </div>
-          </div>
-          <div className="css-login-section">
-            <div className="container">
-              <div className="row">
-                <div className="col-sm-6">
-                  <div className="css-login-title">Login To CommonBrain</div>
-                  <div className="css-login-inputs">
-                    <div className="css-login-input-item">
-                    <TextFieldGroup
-		                	field="username"
-		                	label="username"
-		                	type="text"
-		                	value={username}
-		                	error={errors.username}
-		                	onChange={this.onChange}
-		                />
-
-
-                    </div>
-                    <div className="css-login-input-item">
-                        <TextFieldGroup
-                        field="password"
-                        label="password"
-                        type="password"
-
-                        value={password}
-                        error={errors.password}
-                        onChange={this.onChange}
-                      />
-                    </div>
-                    <div className="css-error-msg">Your Informarion Is Incorrect</div>
-                    {errors.form && <div className=" alert-danger animated fadeIn">{errors.form}</div>}
-                    <div onClick={this.onSubmit} className="css-login-btn">Login</div>
-                  </div>
-
-                </div>
-                <div className="col-sm-6" style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}>
-                  <div className="css-main-logo-container wow animated fadeInUp"><img src={logo_color} alt/></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="css-footer">
-            Copyright 2017 CommonBrain
-          </div>
+          <p className="text-muted">Copyright © Tenect 2017</p>
         </div>
+      </div>
+    </div>
+  </footer>
+</div>
 
       </div>
-    )
+    );
   }
+
 }
 
 function mapStateToProps(state){

@@ -1,76 +1,102 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import Header from '../header';
+class Dashboard extends Component {
 
-import logo_grey from '../../img/logo_grey.png';
-import logo_color from '../../img/logo_color_with_line.png';
-import computer from '../../img/computer.png';
-import logo_white from '../../img/logo_white.png';
-import systems_1 from '../../img/argus.png';
-import systems_2 from '../../img/MRI_Software_logo.svg_-1.png';
-import systems_3 from '../../img/SFDC_logo.png';
-import systems_4 from '../../img/yardi.png';
-import excel from '../../img/Excel-Logo-Home-Page.png';
-import include from '../../img/include.png';
-
-class Dashboard extends React.Component {
-
-
-  render(){
-
-    return(
+  render() {
+    return (
       <div>
-      <div className="main-stage">
-  <div className="container">
-    <div className="row">
-      <div className="col-sm-4">
-        <div className="side-nav">
-          <ul>
-            <li className="active">Getting Started</li>
-            <NavLink to="/product/dashboard/faq"><li>FAQ</li></NavLink>
-          </ul>
+        <Header />
+        <div className="main-stage">
+  <div className="container" style={{display: 'flex', alignItems: 'center', padding: 0, position: 'relative'}}>
+    <div className="left-side-panel animated-slow fadeInDown wow">
+      <div className="manager-container">
+        <div className="manager-img" />
+        <div className="manager-name">Ashley Rhodes<br /><div className="manager-subtitle">Property Manager</div></div>
+        <a href="mailTo:ashley@gmail.com"><div className="manager-email-btn"><i className="fa fa-envelope" />&nbsp; Email</div></a>
+      </div>
+      <div className="stockmarket-widget">
+        <div className="title-1">Stock Market</div>
+        {/* TradingView Widget BEGIN */}
+        {/* TradingView Widget END */}
+      </div>
+      <div className="local-deal-container">
+        <div className="title-1">Local Deals</div>
+        <img src="img/local-deals.png" alt />
+      </div>
+    </div>
+    <div className="middle-panel  animated-slow fadeInDown wow" data-wow-delay=".3s">
+      <div className="main-property-screen-container">
+        <div className="overlay">
+          <div className="main-property-title">1 Tech Plaza</div>
+          <div className="date-details">
+            <li id="todays-date">Oct 25, 2017</li>
+            <li>2:14 PM</li>
+            <li>73°F</li>
+          </div>
         </div>
       </div>
-      <div className="col-sm-8">
-        <div className="side-stage">
-          <div className="side-stage-title">Getting Started</div>
-          <div className="main-desc">Upload your data to CommonBrain quickly and easily.  Choose a type of import below to get started.</div>
-          <div className="side-stage-title small">Portfolio Name</div>
-          <input className="project-name-input" type="text" />
-          <div className="side-stage-title small">We Support <span style={{color: '#FF7600'}}>Any System</span> That Exports To Excel</div>
-          <div className="system-icons">
-            <div className="system-icon"><img src={systems_1} alt /></div>
-            <div className="system-icon"><img src={systems_2} alt /></div>
-            <div className="system-icon"><img src={systems_3} alt /></div>
-            <div className="system-icon"><img src={systems_4} alt /></div>
-          </div>
-          <div style={{width: '100%', textAlign: 'center'}}>
-            <img style={{width: '100%', display: 'inline-block'}} src={include} alt />
-          </div>
-          <div className="drag-and-drop">
-            <div className="drag-and-drop-img">
-              <img src={excel} alt /><br />
-              Drag and Drop Excel Documents
+      <div className="title-1 center">Office Talk</div>
+      <div className="main-tab-container">
+        <li className="active">Top Movies</li>
+        <li>Top Sports</li>
+        <li>Top Celebrity Gossip</li>
+      </div>
+      <div className="article-item">
+        <div className="article-item-top">
+          <div className="article-item-details">
+            <div className="article-item-title">Star Wars Is Back
+              <div className="article-item-date">October 19, 2017</div>
             </div>
+            <div className="article-item-views">18 <i className="fa fa-users" /></div>
           </div>
-          <div className="render-btn-container">
-            <div className="render-btn">Render Your Data</div>
+        </div>
+        <div className="article-item-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, ex quae cumque quidem totam! Laboriosam dolor culpa eius architecto, aut quis. Hic, minima molestiae deserunt tenetur iure nesciunt maxime excepturi.</div>
+      </div>
+      <div className="article-item">
+        <div className="article-item-top" style={{backgroundImage: 'url(img/park.jpg)'}}>
+          <div className="article-item-details">
+            <div className="article-item-title">Jobs Are in Season
+              <div className="article-item-date">October 19, 2017</div>
+            </div>
+            <div className="article-item-views">18 <i className="fa fa-users" /></div>
           </div>
-          <div style={{height: 300}} />
+        </div>
+        <div className="article-item-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, ex quae cumque quidem totam! Laboriosam dolor culpa eius architecto, aut quis. Hic, minima molestiae deserunt tenetur iure nesciunt maxime excepturi.</div>
+      </div>
+      <div style={{height: 300}} />
+    </div>
+    <div className="right-side-panel animated-slow fadeInDown wow" data-wow-delay=".6s">
+      <div className="notifications">
+        <div className="title-1" style={{marginTop: 0}}>Notifications</div>
+        <div className="notification-item">
+          <div className="notification-badge red">NEW</div>
+          <div className="notification-details">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
+          <div className="notification-dismiss">Dismiss</div>
+        </div>
+        <div className="notification-item">
+          <div className="notification-badge red">NEW</div>
+          <div className="notification-details">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
+          <div className="notification-dismiss">Dismiss</div>
+        </div>
+        <div className="notification-item">
+          <div className="notification-badge red">NEW</div>
+          <div className="notification-details">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
+          <div className="notification-dismiss">Dismiss</div>
+        </div>
+        <div className="notification-item">
+          <div className="notification-badge red">NEW</div>
+          <div className="notification-details">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
+          <div className="notification-dismiss">Dismiss</div>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-       </div>
+      </div>
     );
   }
-}
-function mapStateToProps(state){
-  return {
-    auth: state.auth
-  };
+
 }
 
-export default connect(mapStateToProps)(Dashboard);
+export default Dashboard;

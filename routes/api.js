@@ -5,10 +5,31 @@ var jwt = require('jsonwebtoken');
 var mongoose = require('mongoose');
 var multer = require('multer');
 var MongoClient = require('mongodb').MongoClient;
-var URL = 'mongodb://localhost/commonbrain';
+var URL = 'mongodb://localhost/tenect';
 var Excel = require('exceljs');
 var workbook = new Excel.Workbook();
 var CircularJSON = require('circular-json');
+var nodemailer = require('nodemailer');
+var smtpTransport = require('nodemailer-smtp-transport');
+
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+let transporter = nodemailer.createTransport(smtpTransport({
+  name: 'Server',
+  host: 'mail.tenect.com',
+  //maxConnections: 1,
+  port: 587 ,
+  secure: false,
+  auth: {
+    user: 'support@tenect.com',
+    pass: 'Support1!'
+  },
+  tls: {
+    //ciphers: 'SSLv3',
+    rejectUnauthorized: false,
+  //  secureProtocol: "TLSv1_method"
+  }
+
+}));
 
 var storage = multer.diskStorage({
   destination: function(req, file, cb) {
@@ -23,7 +44,7 @@ var upload = multer({storage: storage}).single('file');
 
 
 
-mongoose.connect('mongodb://localhost/commonbrain');
+mongoose.connect('mongodb://localhost/tenect');
 var db = mongoose.connection;
 
 
@@ -156,9 +177,12 @@ exports.LoginCheck = function(req, res){
         collection.findOne({"username": username},function(err, result) {
           if(result == null){
             //console.log(result);
-            res.status(401).json({errors: {form : "invalid" } });
+            res.status(401).json({errors: {form : "Username Does Not Exist" } });
             db.close()
           }else{
+            if(result.password === password){
+
+
             const token = jwt.sign({
                   id: result._id,
                   username: result.username
@@ -168,7 +192,10 @@ exports.LoginCheck = function(req, res){
               res.json({
                   token
                })
-            db.close()
+             }else{
+               res.status(401).json({errors: {form : "Wrong Password" } });
+             }
+            //db.close()
           }
 
         })
@@ -241,3 +268,115 @@ exports.GetPortfolios = function(req, res){
 
     })
 };
+exports.ConfirmEmail = function(req,res){
+  var ObjectId = require('mongodb').ObjectId;
+  var token = req.params.token;
+  const _id = jwt.verify(token, config.jwtSecret);
+  MongoClient.connect(URL, function(err,db){
+    if (err) throw err;
+    var collection = db.collection('users');
+    //console.log(_id);
+    //res.send(_id);
+    console.log(_id.id);
+    collection.updateOne({ _id: ObjectId(_id.id) },{$set: {confirmed:true}}, function(err, result){
+      if (err) throw err;
+
+      res.send(result);
+    })
+  });
+}
+exports.SignUpUser = function(req,res){
+
+  const {username, email, password } = req.body;
+  var EMAIL_SECRET;
+  MongoClient.connect(URL, function(err, db) {
+      if (err) throw err;
+
+      var collection = db.collection("users")
+
+      collection.find({email:email}).toArray(function(err, result) {
+        var firstResult = result;
+        collection.find({username:username}).toArray(function(err, result) {
+          if(result.length < 1 && firstResult.length < 1){
+            var user = {username:username,email:email,password:password,confirmed:false,isAdmin:false};
+            collection.insert(user, function(err){
+              const token = jwt.sign({
+                  id: user._id,
+                  username:user.username,
+                  email: user.email
+                  }, config.jwtSecret);
+
+              const emailToken = jwt.sign({
+                id:user._id
+              },
+                  config.jwtSecret,
+              {
+                expiresIn:'1d'
+              });
+
+              var url = `http://localhost:9000/confirmation/${emailToken}`;
+              const emailOutput = `
+              <div style="background:#f8f8f8; text-align: center; width:100%; padding:30px 15px;box-sizing: border-box;">
+              	<div style="max-width: 500px; width:100%; background:#fff; padding:15px; text-align: center;display: inline-block; border:solid 1px #eaeaea; border-radius: 3px;box-sizing: border-box;">
+              	<div style="">
+              		<img src="http://tenect.com/img/logo_1.png" alt="" height="50px">
+              	</div>
+              		<div style="color:#000;  font-size: 12pt; font-family: Arial; font-weight: bold; margin:10px 0px; display: inline-block">Welcome To Tenect<sup style="font-size: 6pt;">TM</sup></div>
+              		<div style=" font-size: 10pt;
+              		color:#808080;
+              		font-family:Arial;
+              		">
+              			Thank you for joining Tenect!  In order to take full advantage of the benefits of Tenect, you need to verify your email address.  By clicking the button below, you will activate your account.
+              		</div>
+              		<a target="_blank" href="${url}"><div style="background:#34b2b8; color:#fff; font-size: 12pt;
+              		font-family:Arial; display:inline-block; padding:7px 15px; border-radius:3px; margin-top:25px;">
+              			Confirm Your Email
+              		</div></a>
+
+              	</div><br>
+              	<div style="display: inline-block; font-size: 10pt;
+              		font-family:Arial; color:#AFAFAF; margin-top:15px">
+              			Tenect | 77900 Country Club Dr | Palm Desert, CA 92211
+              		</div>
+              </div>
+              `;
+              let mailOptions = {
+                from: '"Tenect Support" <support@tenect.com>', // sender address
+                to: user.email, // list of receivers
+                subject: 'Welcome to Tenect!', // Subject line
+                text: 'Hello world?', // plain text body
+                html: emailOutput // html body
+              };
+
+
+              transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                  return console.log(error);
+                }
+                console.log('Message sent: %s', info.messageId);
+                console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+              });
+
+              res.json({
+                  token
+               })
+            })
+
+
+          }else{
+            if(result.length >= 1){
+              res.status(401).json({errors: {form : "Username exists" } });
+            }
+            if(firstResult.length >= 1){
+              res.status(401).json({errors: {form : "Email is already in use" } });
+            }
+          }
+      })
+  })
+})
+
+
+
+
+
+}
