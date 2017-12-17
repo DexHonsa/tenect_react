@@ -22,7 +22,7 @@ app.set('view engine', 'handlebars');
 
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
-mongoose.connect('mongodb://localhost/tenect');
+mongoose.connect('mongodb://tenect:Tenect1!@tenect-shard-00-00-4a4fj.mongodb.net:27017,tenect-shard-00-01-4a4fj.mongodb.net:27017,tenect-shard-00-02-4a4fj.mongodb.net:27017/tenect?ssl=true&replicaSet=Tenect-shard-0&authSource=admin');
 var db = mongoose.connection;
 
 app.get('/', function(req, res) {

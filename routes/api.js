@@ -5,7 +5,7 @@ var jwt = require('jsonwebtoken');
 var mongoose = require('mongoose');
 var multer = require('multer');
 var MongoClient = require('mongodb').MongoClient;
-var URL = 'mongodb://localhost/tenect';
+var URL = 'mongodb://tenect:Tenect1!@tenect-shard-00-00-4a4fj.mongodb.net:27017,tenect-shard-00-01-4a4fj.mongodb.net:27017,tenect-shard-00-02-4a4fj.mongodb.net:27017/tenect?ssl=true&replicaSet=Tenect-shard-0&authSource=admin';
 var Excel = require('exceljs');
 var workbook = new Excel.Workbook();
 var CircularJSON = require('circular-json');
@@ -44,7 +44,7 @@ var upload = multer({storage: storage}).single('file');
 
 
 
-mongoose.connect('mongodb://localhost/tenect');
+mongoose.connect('mongodb://tenect:Tenect1!@tenect-shard-00-00-4a4fj.mongodb.net:27017,tenect-shard-00-01-4a4fj.mongodb.net:27017,tenect-shard-00-02-4a4fj.mongodb.net:27017/tenect?ssl=true&replicaSet=Tenect-shard-0&authSource=admin');
 var db = mongoose.connection;
 
 
@@ -347,7 +347,7 @@ exports.SignUpUser = function(req,res){
                 text: 'Hello world?', // plain text body
                 html: emailOutput // html body
               };
-
+              console.log({email:user.email})
 
               transporter.sendMail(mailOptions, (error, info) => {
                 if (error) {
