@@ -71,13 +71,13 @@ class Header extends React.Component {
     return(
       <div>
       <div className="top-nav">
-  <a href="home.html"><div className="main-logo"><img src={logo_white} alt /></div></a>
+  <Link to="/dashboard"><div className="main-logo"><img src={logo_white} alt /></div></Link>
   <div className="container" style={{display: 'flex', alignItems: 'center', padding: 0}}>
     <div className="main-nav-list">
       <ul>
-        <Link to="/tenant_utitlity"><li>Tenant Utility</li></Link>
-        <Link to="/social_connections"><li>Social Connections</li></Link>
-        <Link to="/marketplace"><li>Marketplace</li></Link>
+        <NavLink activeClassName="active" to="/tenant_utitlity"><li>Tenant Utility</li></NavLink>
+        <NavLink activeClassName="active" to="/social_connections"><li>Social Connections</li></NavLink>
+        <NavLink activeClassName="active" to="/marketplace"><li>Marketplace</li></NavLink>
       </ul>
     </div>
     <div className="main-search-bar">

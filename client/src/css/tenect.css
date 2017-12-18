@@ -57,7 +57,7 @@ ul, li{
 .main-nav-list{
 	float: left;
 }
-.main-nav-list li{
+.main-nav-list a{
 	float: left;
 	padding:0px 0;
 	margin:0px 15px;
@@ -66,10 +66,10 @@ ul, li{
 	cursor: pointer;
 	transition:all .3s ease;
 }
-.main-nav-list li:hover{
+.main-nav-list a:hover{
 	color:#fff;
 }
-.main-nav-list li.active{
+.main-nav-list a.active{
 	border-bottom:solid 3px #34b2b8;
 	color:#fff;
 }
@@ -491,6 +491,7 @@ input:focus{
 .listing-item{
 	margin-top:45px;
 	transition:all .3s ease;
+	float: left;
 }
 .listing-inner{
 	background:#f0f1f3;

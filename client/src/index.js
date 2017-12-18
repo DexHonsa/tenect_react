@@ -21,8 +21,9 @@ import history from './actions/history';
 import Header from './components/header.js';
 import Login from './components/login/login.js';
 import Dashboard from './components/dashboard/dashboard.js';
-
-
+import SocialConnections from './components/social_connections/social_connections';
+import Marketplace from './components/marketplace/marketplace';
+import TenantUtility from './components/tenant_utility/tenant_utility';
 import './css/bootstrap.min.css';
 import './css/animate.css';
 
@@ -52,6 +53,9 @@ const Root = ({ store }) => (
       <Route exact path="/" component={Login}></Route>
 
       <Route exact path="/dashboard" component={Dashboard}></Route>
+      <Route exact path="/social_connections" component={SocialConnections}></Route>
+      <Route exact path="/marketplace" component={Marketplace}></Route>
+      <Route exact path="/tenant_utitlity" component={TenantUtility}></Route>
 
 
         </div>

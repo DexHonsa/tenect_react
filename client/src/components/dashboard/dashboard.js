@@ -8,7 +8,7 @@ class Dashboard extends Component {
         <Header />
         <div className="main-stage">
   <div className="container" style={{display: 'flex', alignItems: 'center', padding: 0, position: 'relative'}}>
-    <div className="left-side-panel animated-slow fadeInDown wow">
+    <div className="left-side-panel animated fadeInDown wow">
       <div className="manager-container">
         <div className="manager-img" />
         <div className="manager-name">Ashley Rhodes<br /><div className="manager-subtitle">Property Manager</div></div>
@@ -24,7 +24,7 @@ class Dashboard extends Component {
         <img src="img/local-deals.png" alt />
       </div>
     </div>
-    <div className="middle-panel  animated-slow fadeInDown wow" data-wow-delay=".3s">
+    <div className="middle-panel  animated fadeInDown wow" data-wow-delay=".3s">
       <div className="main-property-screen-container">
         <div className="overlay">
           <div className="main-property-title">1 Tech Plaza</div>
@@ -65,7 +65,7 @@ class Dashboard extends Component {
       </div>
       <div style={{height: 300}} />
     </div>
-    <div className="right-side-panel animated-slow fadeInDown wow" data-wow-delay=".6s">
+    <div className="right-side-panel animated fadeInDown wow" data-wow-delay=".6s">
       <div className="notifications">
         <div className="title-1" style={{marginTop: 0}}>Notifications</div>
         <div className="notification-item">
