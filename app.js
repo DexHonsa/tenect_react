@@ -25,7 +25,9 @@ app.use('/public', express.static(path.join(__dirname, 'public')));
 mongoose.connect('mongodb://tenect:Tenect1!@tenect-shard-00-00-4a4fj.mongodb.net:27017,tenect-shard-00-01-4a4fj.mongodb.net:27017,tenect-shard-00-02-4a4fj.mongodb.net:27017/tenect?ssl=true&replicaSet=Tenect-shard-0&authSource=admin');
 var db = mongoose.connection;
 
-
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/client/build/index.html'));
+});
 
 // create reusable transporter object using the default SMTP transport
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
