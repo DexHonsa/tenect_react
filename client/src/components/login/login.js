@@ -52,9 +52,9 @@ class Login extends Component {
 
       e.preventDefault();
        this.setState({errors: {}, isLoading: true});
-      this.props.userLogin(this.state).then(
+      this.props.userLogin(data).then(
         (res) => this.context.router.history.push('/dashboard'),
-        (err) => this.setState({errors: err.response.data.errors, isLoading: false})
+        (err) => this.setState({errors: err.errors, isLoading: false})
         );
     }
   }
