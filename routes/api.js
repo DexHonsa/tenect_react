@@ -1,6 +1,5 @@
 'use strict';
 var config = require(__dirname+'/../config.js');
-var Validator = require('Validator');
 var jwt = require('jsonwebtoken');
 var mongoose = require('mongoose');
 var multer = require('multer');
