@@ -54,7 +54,7 @@ class Login extends Component {
        this.setState({errors: {}, isLoading: true});
       this.props.userLogin(this.state).then(
         (res) => {
-          this.context.router.history.push('/product/dashboard');
+          this.context.router.history.push('/dashboard');
           console.log(res);
         },
 
