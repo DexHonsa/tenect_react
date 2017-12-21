@@ -168,12 +168,13 @@ exports.ImportExcel = function(req,res){
 }
 exports.LoginCheck = function(req, res){
     const { username, password } = req.body;
+    var _username = toLowerCase(username);
     MongoClient.connect(URL, function(err, db) {
       if (err) return
 
-        var collection = db.collection('users')
+        var collection = db.collection('users');
 
-        collection.findOne({"username": username},function(err, result) {
+        collection.findOne({"username": _username},function(err, result) {
           if(result == null){
             //console.log(result);
             res.status(401).json({errors: {form : "Username Does Not Exist" } });
