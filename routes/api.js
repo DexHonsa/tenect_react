@@ -168,7 +168,7 @@ exports.ImportExcel = function(req,res){
 }
 exports.LoginCheck = function(req, res){
     const { username, password } = req.body;
-    var _username = toLowerCase(username);
+    var _username = username.toLowerCase();
     MongoClient.connect(URL, function(err, db) {
       if (err) return
 
